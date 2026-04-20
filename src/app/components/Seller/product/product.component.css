@@ -1,0 +1,54 @@
+/* Form card */
+.form-card {
+    border-radius: 20px;
+    background: #ffffff;
+    transition: 0.3s;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Gradient Button */
+.btn-gradient {
+    background: linear-gradient(135deg, #198754, #20c997);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(25,135,84,0.4);
+}
+
+/* Preview Images */
+.preview-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.preview-img:hover {
+    transform: scale(1.1);
+}
+
+/* Table Image */
+.table-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Table Hover */
+.table-row {
+    transition: 0.3s;
+}
+
+.table-row:hover {
+    background-color: #f1fdf6;
+    transform: scale(1.01);
+}

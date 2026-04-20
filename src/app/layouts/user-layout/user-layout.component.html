@@ -1,0 +1,163 @@
+<!-- <div class="contact text-center text-white justify-content-center align-items-center d-flex">
+  <p class="mt-2">Delhi Store || New Users Get Extra 20% OFF, Use code NEW20 || NEXT DAY DELIVERY || Shop now!</p>
+</div>
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white  sticky-top">
+    <div class="container ">
+      
+      <img src="brand.jpg" alt="Logo" class=" border bordered-box navbar-brand fw-bold text-primary"
+        style="height: 100px; width: 100px;">
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav fw-medium ">
+        <li class="nav-item px-2">
+          <a class="nav-link" routerLink="/">
+            Home
+          </a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link">
+            About
+          </a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link" routerLink="/enquiry">
+            Enquiry
+          </a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link">
+            Product
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav fw-medium align-items-center">
+        <li class="nav-item">
+          
+             <a class="nav-link" routerLink="/signUpSeller" >Become Seller</a>
+          
+        </li>
+        <li class="nav-item">
+          <a class="nav-link login" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signUp">Sign Up</a>
+        </li>
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+
+
+  <div class=" ">
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+<!-- 🔹 Top Offer Bar -->
+<div class="bg-success text-white text-center py-2 small fw-semibold">
+  <i class="bi bi-geo-alt-fill me-1"></i>
+  Delhi Store | 🎉 New Users Get Extra 20% OFF (NEW20) | 🚚 Next Day Delivery
+</div>
+
+<!-- 🔹 Main Wrapper -->
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- 🔹 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+
+      <!-- Logo + Brand -->
+      <a class="navbar-brand d-flex align-items-center fw-bold text-success" routerLink="/">
+        <img src="brand.jpg" alt="Logo" class="rounded-circle me-2" style="height: 50px; width: 50px;">
+        Ponetic
+      </a>
+
+      <!-- Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Left Menu -->
+        <ul class="navbar-nav mx-auto fw-medium">
+          <li class="nav-item px-2">
+            <a class="nav-link active" routerLink="/">
+              <i class="bi bi-house-door-fill me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link">
+              <i class="bi bi-info-circle-fill me-1"></i> About
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link" routerLink="/enquiry">
+              <i class="bi bi-chat-dots-fill me-1"></i> Enquiry
+            </a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link">
+              <i class="bi bi-box-seam me-1"></i> Product
+            </a>
+          </li>
+        </ul>
+
+        <!-- Right Menu -->
+        <ul class="navbar-nav fw-medium align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signUpSeller">
+              <i class="bi bi-shop me-1"></i> Become Seller
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-outline-success mx-2" routerLink="/login">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Login
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-success" routerLink="/signUp">
+              <i class="bi bi-person-plus-fill me-1"></i> Sign Up
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🔹 Page Content with Background -->
+  <div class="flex-grow-1 position-relative">
+
+    <!-- Background Image -->
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6"
+           class="w-100 h-100 object-fit-cover opacity-25">
+    </div>
+
+    <!-- Content -->
+    <div class="position-relative container py-4">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Footer -->
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
+    <small>
+      🌿 © 2026 Ponetic | Hydroponic Solutions | Grow Smart, Grow Green
+    </small>
+  </footer>
+
+</div>

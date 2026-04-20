@@ -1,0 +1,223 @@
+<!-- <div>
+    <div>
+        <h2>Add Products</h2>
+    </div>
+    <div>
+        <div>
+            <h4>{{isEdit?'Edit Product':'Add Product'}}</h4>
+        </div>
+        <div>
+            <label for="productname">Product Name </label>
+            <input type="text" name="productname" id="productname" [(ngModel)]="newProduct.name">
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" [(ngModel)]="newProduct.price">
+        </div>
+
+        <div>
+            <label for="stock">Stock</label>
+            <input type="number" name="stock" id="stock" [(ngModel)]="newProduct.stock">
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <select name="category" id="category" [(ngModel)]="newProduct.categoryId">
+                <option [value]="0">select category</option>
+                <option *ngFor="let c of categories" [value]="c.id">{{c.catname}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="image">Product Image</label>
+            <input type="file" name="image" id="image" multiple (change)="onImageSelected($event)">
+        </div>
+
+        
+        <div *ngIf="imagePreview.length">
+            <img *ngFor="let img of imagePreview" [src]="img" style="width:150px;height:150px">
+        </div>
+
+
+        <div class="col-12 mt-4">
+            <h5>Specifications</h5>
+            <div *ngFor="let spec of newProduct.specifications; let i = index" class="row align-items-center mb-2">
+                <div class="col-md-5">
+                    <input class="form-control" placeholder="Specification Name" [(ngModel)]="spec.name"
+                        name="specName{{i}}">
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" placeholder="Specification Value" [(ngModel)]="spec.value"
+                        name="specValue{{i}}">
+                </div>
+                <div class="col-md-2 text-center">
+                    <button class="btn btn-danger btn-sm" (click)="removeSpecification(i)">Remove</button>
+                </div>
+            </div>
+            <button class="btn btn-outline-primary btn-sm" (click)="addSpecification()">+ Add Specification</button>
+        </div>
+
+        
+        <div class="col-12 mt-4">
+            <button class="btn btn-primary" *ngIf="!isEdit" (click)="addProduct()">Add Product</button>
+            <button class="btn btn-success" *ngIf="isEdit" (click)="updateProduct()">Update Product</button>
+            <button class="btn btn-secondary ms-2" (click)="resetForm()">Clear</button>
+        </div>
+
+    </div>
+</div>
+
+<table class="table table-bordered shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{ p.id }}</td>
+            <td>
+                <img *ngIf="p.images && p.images.length" [src]="p.images[0].imageUrl"
+                    style="width:60px;height:60px;object-fit:cover;">
+            </td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.category?.catname }}</td>
+            <td>₹{{ p.price }}</td>
+            <td>{{ p.stock }}</td>
+            <td>
+                <button class="btn btn-sm btn-warning" (click)="editProduct(p)">Edit</button>
+                <button class="btn btn-sm btn-danger ms-1" (click)="deleteProduct(p.id!)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+<div class="container my-4">
+
+  <!-- 🔹 Title -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-success">Manage Products</h2>
+    <p class="text-muted">Add and manage your hydroponic products</p>
+  </div>
+
+  <!-- 🔹 Form Card -->
+  <div class="card shadow-lg border-0 form-card p-4">
+
+    <h4 class="mb-3 text-success">
+      {{isEdit ? 'Edit Product' : 'Add Product'}}
+    </h4>
+
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <label class="form-label">Product Name</label>
+        <input class="form-control" [(ngModel)]="newProduct.name">
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Price</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct.price">
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Stock</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct.stock">
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Category</label>
+        <select class="form-select" [(ngModel)]="newProduct.categoryId">
+          <option [value]="0">Select category</option>
+          <option *ngFor="let c of categories" [value]="c.id">{{c.catname}}</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Upload Images</label>
+        <input type="file" class="form-control" multiple (change)="onImageSelected($event)">
+      </div>
+
+      <!-- 🔹 Image Preview -->
+      <div class="col-12 d-flex gap-2 flex-wrap" *ngIf="imagePreview?.length">
+        <img *ngFor="let img of imagePreview" [src]="img" class="preview-img">
+      </div>
+
+      <!-- 🔹 Specifications -->
+      <div class="col-12 mt-3">
+        <h5 class="text-success">Specifications</h5>
+
+        <div *ngFor="let spec of newProduct.specifications; let i=index" class="row g-2 mb-2">
+          <div class="col-md-5">
+            <input class="form-control" placeholder="Name" [(ngModel)]="spec.name" name="specName{{i}}">
+          </div>
+          <div class="col-md-5">
+            <input class="form-control" placeholder="Value" [(ngModel)]="spec.value" name="specValue{{i}}">
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-danger w-100" (click)="removeSpecification(i)">Remove</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="addSpecification()">
+          + Add Specification
+        </button>
+      </div>
+
+      <!-- 🔹 Buttons -->
+      <div class="col-12 mt-3">
+        <button class="btn btn-gradient me-2" *ngIf="!isEdit" (click)="addProduct()">Add Product</button>
+        <button class="btn btn-success me-2" *ngIf="isEdit" (click)="updateProduct()">Update</button>
+        <button class="btn btn-secondary" (click)="resetForm()">Clear</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔹 Table -->
+  <div class="card shadow-lg border-0 mt-5 p-3">
+
+    <h5 class="text-success mb-3">Product List</h5>
+
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of products" class="table-row">
+          <td>{{p.id}}</td>
+
+          <td>
+            <img *ngIf="p.images?.length" [src]="p.images[0].imageUrl" class="table-img">
+          </td>
+
+          <td>{{p.name}}</td>
+          <td>{{p.category?.catname}}</td>
+          <td>₹{{p.price}}</td>
+          <td>{{p.stock}}</td>
+
+          <td>
+            <button class="btn btn-sm btn-warning me-1" (click)="editProduct(p)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

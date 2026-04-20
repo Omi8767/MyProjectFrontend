@@ -1,0 +1,29 @@
+.navbar{
+    height: 100px;
+    
+}
+.nav-link{
+    border-radius: 50px;
+    transition: all 0.5s ease;
+    color: rgb(33, 32, 32);
+    font-size: large;
+    
+}
+ .nav-link:hover {
+  background-color: #2a522a;
+  color: white !important;
+}
+.contact{
+    background-color:#2a522a;
+    height:40px;
+    font-size: 90%;
+    padding-left: 160px;
+
+}
+a{
+    text-decoration: none;
+    vertical-align: middle;
+}
+a:hover{
+    cursor: pointer;
+}

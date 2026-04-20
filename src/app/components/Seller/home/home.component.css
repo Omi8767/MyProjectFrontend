@@ -1,0 +1,63 @@
+/* Hero */
+.hero {
+    height: 70vh;
+    background: linear-gradient(rgba(25,135,84,0.7), rgba(25,135,84,0.7)),
+                url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6') center/cover;
+}
+
+/* Stats */
+.stats {
+    margin-top: -50px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Solution Cards */
+.solution-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.solution-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.solution-card:hover {
+    transform: scale(1.03);
+}
+
+/* Product Cards */
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.product-card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Buttons */
+.btn-success {
+    background: linear-gradient(135deg, #198754, #20c997);
+    border: none;
+}

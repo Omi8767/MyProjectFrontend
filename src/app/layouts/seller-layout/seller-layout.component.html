@@ -1,0 +1,85 @@
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- 🔹 Top Offer Bar -->
+  <div class="top-bar text-white text-center py-2 small fw-semibold">
+    🌿 Delhi Store | 🎉 20% OFF (NEW20) | 🚚 Fast Delivery
+  </div>
+
+  <!-- 🔹 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light premium-navbar sticky-top">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand d-flex align-items-center fw-bold text-success" routerLink="/">
+        <img src="brand.jpg" class="rounded-circle me-2 brand-img">
+        Ponetic
+      </a>
+
+      <!-- Toggle -->
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu -->
+      <div class="collapse navbar-collapse" id="nav">
+
+        <!-- Center -->
+        <ul class="navbar-nav mx-auto fw-medium">
+
+          <li class="nav-item px-2">
+            <a class="nav-link active" routerLink="/seller/home"><i class="bi bi-house-door-fill me-1"></i>Home</a>
+          </li>
+
+          <li class="nav-item px-2">
+            <a class="nav-link" routerLink="/seller/addproduct"><i class="bi bi-info-circle-fill me-1"></i>Add Product</a>
+          </li>
+
+          <li class="nav-item px-2">
+            <a class="nav-link"><i class="bi bi-box-seam me-1"></i>Products</a>
+          </li>
+
+          <li class="nav-item px-2">
+            <a class="nav-link"><i class="bi bi-chat-dots-fill me-1"></i>Enquiry</a>
+          </li>
+
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav align-items-center">
+
+          <li class="nav-item">
+            <a class="nav-link">Become Seller</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-outline-success mx-2">{{seller?.name}}</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-success" (click)="logout()">Logout</a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🔹 Content Area -->
+  <div class="flex-grow-1 position-relative">
+
+    <!-- Background -->
+    <div class="bg-image"></div>
+
+    <div class="container py-5 position-relative">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Footer -->
+  <footer class="premium-footer text-center py-3">
+    🌿 © 2026 Ponetic | Grow Smart, Grow Green
+  </footer>
+
+</div>

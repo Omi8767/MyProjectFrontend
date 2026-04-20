@@ -1,0 +1,35 @@
+<div>
+    <h2>
+        Enquiry Form
+    </h2>
+</div>
+<div>
+    <form [formGroup]="enquiries" (ngSubmit)="save()">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" formControlName="name" id="name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" formControlName="email" id="email">
+        </div>
+        <div>
+            <label for="contact">Contact:</label>
+        <input type="text" formControlName="contact" id="contact">
+        </div>
+        <div>
+            <label for="subject">Subject</label>
+        <input type="text" formControlName ="subject" id="subject">
+        </div>
+        <div>
+            <label for="message">Message:</label>
+        <input type="text" formControlName="message" id="message">
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+        
+
+    </form>
+</div>
