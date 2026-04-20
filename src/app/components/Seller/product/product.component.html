@@ -126,6 +126,11 @@
       </div>
 
       <div class="col-md-3">
+        <label class="form-label">Unit</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct.unit" placeholder="e.g kg">
+      </div>
+
+      <div class="col-md-3">
         <label class="form-label">Stock</label>
         <input type="number" class="form-control" [(ngModel)]="newProduct.stock">
       </div>
@@ -192,6 +197,7 @@
           <th>Name</th>
           <th>Category</th>
           <th>Price</th>
+          <th>Unit</th>
           <th>Stock</th>
           <th>Action</th>
         </tr>
@@ -208,11 +214,13 @@
           <td>{{p.name}}</td>
           <td>{{p.category?.catname}}</td>
           <td>₹{{p.price}}</td>
+          <td>/{{p.unit}}</td>
           <td>{{p.stock}}</td>
 
           <td>
             <button class="btn btn-sm btn-warning me-1" (click)="editProduct(p)">Edit</button>
             <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id!)">Delete</button>
+            <!-- <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id)">Delete</button> -->
           </td>
         </tr>
       </tbody>

@@ -30,10 +30,9 @@ export class ProductComponent implements OnInit {
     return {
       name: '',
       price: 0,
+      unit:'',
       stock: 0,
       available: true,
-      
-      
       categoryId: 0,
       imageurls: [],
       specifications: []
@@ -42,10 +41,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.loadProducts();
 
     const userData = localStorage.getItem('seller');
     this.seller = userData ? JSON.parse((userData)) : null;
+
+        this.loadProducts();    
+
   }
 
   loadCategories() {
@@ -61,7 +62,8 @@ export class ProductComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productService.getAll().subscribe({
+    if(this.seller){
+      this.productService.getBySellerId(this.seller.id!).subscribe({
       next: (res) => {
         console.log("products from api", res);
         this.products = res;
@@ -70,7 +72,13 @@ export class ProductComponent implements OnInit {
         console.log("Error while loading products", err);
       }
     })
+    }
+    else{
+      this.products=[];
+    }
+    
   }
+
 
   onImageSelected(event: any) {
     const files = event.target.files;
@@ -126,13 +134,14 @@ export class ProductComponent implements OnInit {
     this.newProduct = {
       name: p.name,
       price: p.price,
+      unit:p.unit,
       stock: p.stock,
       available: p.available,
       categoryId: p.category?.id || 0,
       // imageurls: p.images?.[0]?.imageUrl || '',
       imageurls: p.images ? p.images.map(img => img.imageUrl) : [],
       // specifications: p.specifications || [],
-          specifications: p.specifications ? [...p.specifications] : [],
+      specifications: p.specifications ? [...p.specifications] : [],
 
       id: p.id
     }

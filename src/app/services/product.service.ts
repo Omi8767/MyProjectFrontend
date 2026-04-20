@@ -4,6 +4,7 @@ import { API_BASE_URL } from './api.config';
 import { HttpClient } from '@angular/common/http';
 import { ICustomer } from './customer.service';
 import { Observable } from 'rxjs';
+import { ProductComponent } from '../components/Seller/product/product.component';
 
 export interface ISpecificationDTO {
   name: string;
@@ -12,6 +13,7 @@ export interface ISpecificationDTO {
 export interface IProductDTO {
   name: string;
   price: number;
+  unit:string;
   stock: number;
   available: boolean;
   sellerId: number;
@@ -30,6 +32,7 @@ export interface IProduct {
   category: ICategory;
   name: string;
   price: number;
+  unit:string;
   stock: number;
   available: boolean;
   seller: ICustomer;
@@ -55,6 +58,9 @@ export class ProductService {
 
   getById(id: number): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.apiUrl}/${id}`);
+  }
+  getBySellerId(id:number):Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(`${this.apiUrl}/seller/${id}`);
   }
 
   update(id: number, product: IProductDTO): Observable<IProduct> {
