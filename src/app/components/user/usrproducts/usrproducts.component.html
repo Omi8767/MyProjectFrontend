@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-3 ">
+    <aside class="sidebar">
+      <h5>Categories</h5>
+      <ul class="list-item list-unstyled">
+        <li ><a class="btn btn-success my-1" (click)="loadProducts()">All</a></li>
+        <li *ngFor="let c of categories"><a class="btn btn-success my-1" (click)="loadProductByCat(c.id!)">{{c.catname}}</a></li>
+        <!-- <li ><a class="btn btn-success my-1" >{{categories[0].catname}}</a></li>
+        <li ><a class="btn btn-success my-1" >{{categories[1].catname}}</a></li>
+        <li ><a class="btn btn-success my-1" >{{categories[2].catname}}</a></li> -->
+      </ul>
+    </aside>
+  </div>
+  <div class="col-9">
+    <div class="container">
+    <div class="row">
+        <div *ngFor="let p of productlist" class="card col-md-3" >
+        <div class="card-body">
+            <img [src]="p.images?.[0]?.imageUrl" alt="p.name" style="height: 100px; width: 100px;">
+
+        </div>
+        <div>
+            <label for="pname">Product Name:{{p.name}}</label><br>
+             <label for="pname">Price:{{p.price | currency:'INR'}}</label><br>
+             <label for="pname">Stock:{{p.stock}}</label><br>
+
+
+        </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</div>
+
+
+
+<!-- 
+<div class="bg-dark text-white text-center py-2 small">
+  🚚 Free Delivery | 🔥 20% OFF for New Users | Use Code: NEW20
+</div>
+
+
+<div class="container my-4 p-0" *ngIf="productlist.length">
+
+  <div class="row g-4 justify-content-center">
+
+    <div *ngFor="let p of productlist" class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+
+      <div class="card h-100 border-0 shadow-sm">
+
+       
+        <div class="text-center p-3 bg-light">
+          <img 
+            [src]="p.images?.[0]?.imageUrl" 
+            [alt]="p.name"
+            class="img-fluid rounded"
+            style="height:170px; object-fit:cover;">
+        </div>
+
+       
+        <div class="card-body p-2 text-start">
+
+          <h6 class="fw-semibold mb-1 text-truncate">
+            {{p.name}}
+          </h6>
+
+          <div class="text-success fw-bold">
+            {{p.price | currency:'INR'}}
+          </div>
+
+          <small class="text-muted">
+            Stock: {{p.stock}}
+          </small>
+
+        </div>
+
+        
+        <div class="card-footer bg-white border-0 p-2">
+          <button class="btn btn-success btn-sm w-100">
+            Add to Cart
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div> -->

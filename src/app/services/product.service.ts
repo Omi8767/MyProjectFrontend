@@ -63,6 +63,10 @@ export class ProductService {
     return this.http.get<IProduct[]>(`${this.apiUrl}/seller/${id}`);
   }
 
+  getByCategoryId(id:number):Observable<IProduct[]>{
+   return this.http.get<IProduct[]>(`${this.apiUrl}/category/${id}`);
+  }
+
   update(id: number, product: IProductDTO): Observable<IProduct> {
     debugger;
     return this.http.put<IProduct>(`${this.apiUrl}/${id}`, product);

@@ -174,8 +174,9 @@ export class ProductComponent implements OnInit {
     if (!confirm('Are you sure you want to delete this product?')) return;
 
     this.productService.delete(id).subscribe({
-      next: () => {
-        alert('Product Deleted..');
+      next: (res) => {
+        // alert('Product Deleted..');
+        alert(res.message);
         this.resetForm();
         this.loadProducts();
       },
