@@ -1,11 +1,11 @@
-<div class="d-flex flex-column min-vh-100 bg-light">
+<!-- <div class="d-flex flex-column min-vh-100 bg-light">
 
-    <!-- ✅ Navbar -->
+  
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary">HydroPonic</a>
 
-            <!-- Toggler -->
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,8 +26,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">
-                        Product
+                    <a class="nav-link" routerLink="/customer/buyproducts">
+                        Products
                     </a>
                 </li>
                 <li class="nav-item">
@@ -53,4 +53,80 @@
     <div class="container flex-grow-1 my-4">
         <router-outlet></router-outlet>
     </div>
+</div> -->
+<div class="main-wrapper d-flex flex-column min-vh-100">
+
+    <!-- 🌿 Navbar -->
+    <nav class="navbar navbar-expand-lg premium-nav sticky-top">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand brand-text">
+                🌱 HydroPonic
+            </a>
+
+            <!-- Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="nav">
+
+                <!-- Center Links -->
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link fancy-link">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fancy-link">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fancy-link">Enquiry</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fancy-link" routerLink="/customer/buyproducts">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link fancy-link" routerLink="/customer/feedback">Feedback</a>
+                    </li>
+
+                </ul>
+
+                <!-- Right -->
+                <ul class="navbar-nav align-items-center">
+
+                    <li class="nav-item me-3 user-badge">
+                        👤 {{customer?.name}}
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="btn logout-btn" (click)="logout()">Logout</button>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🌿 Background Section -->
+    <div class="content-area flex-grow-1">
+        <div class="overlay"></div>
+
+        <div class="container py-4 position-relative">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <!-- 🌿 Footer -->
+    <footer class="footer text-center">
+        🌿 Grow Smart | Hydroponic Solutions © 2026
+    </footer>
+
 </div>

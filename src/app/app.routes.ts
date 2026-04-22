@@ -25,7 +25,8 @@ export const routes: Routes = [
         canActivate:[customerAuthGuard],
         children:[
             {path:'home',loadComponent:()=>import('./components/customer/home/home.component').then(m=>m.HomeComponent)},
-            {path:'feedback',loadComponent:()=>import('./components/customer/feedback/feedback.component').then(m=>m.FeedbackComponent)}
+            {path:'feedback',loadComponent:()=>import('./components/customer/feedback/feedback.component').then(m=>m.FeedbackComponent)},
+            {path:'buyproducts',loadComponent:()=>import('./components/customer/products/products.component').then(m=>m.ProductsComponent)}
         ]
     },
     {

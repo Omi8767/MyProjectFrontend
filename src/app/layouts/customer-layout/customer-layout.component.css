@@ -1,0 +1,97 @@
+/* 🌿 Background */
+.main-wrapper {
+    background: linear-gradient(135deg, #e6fff5, #f0fff8);
+}
+
+/* 🌿 Navbar Glass Effect */
+.premium-nav {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+/* 🌿 Brand */
+.brand-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #198754 !important;
+    letter-spacing: 1px;
+}
+
+/* 🌿 Links */
+.fancy-link {
+    position: relative;
+    margin: 0 12px;
+    color: #333 !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.fancy-link:hover {
+    color: #198754 !important;
+    transform: translateY(-2px);
+}
+
+/* underline animation */
+.fancy-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #198754, #20c997);
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.fancy-link:hover::after {
+    width: 100%;
+}
+
+/* 🌿 User badge */
+.user-badge {
+    background: linear-gradient(135deg, #198754, #20c997);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* 🌿 Logout button */
+.logout-btn {
+    background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
+}
+
+/* 🌿 Content Background */
+.content-area {
+    position: relative;
+    min-height: 100%;
+}
+
+/* overlay effect */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6') center/cover;
+    opacity: 0.15;
+}
+
+/* 🌿 Footer */
+.footer {
+    background: linear-gradient(135deg, #198754, #20c997);
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
