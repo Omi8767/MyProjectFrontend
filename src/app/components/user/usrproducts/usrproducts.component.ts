@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductService } from '../../../services/product.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { CategoryService, ICategory } from '../../../services/category.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usrproducts',
   standalone: true,
-  imports: [CommonModule,CurrencyPipe],
+  imports: [CommonModule,CurrencyPipe,RouterLink],
   templateUrl: './usrproducts.component.html',
   styleUrl: './usrproducts.component.css'
 })
@@ -14,7 +15,7 @@ export class UsrproductsComponent implements OnInit {
 
   productlist:IProduct[]=[];
   categories:ICategory[]=[];
-  isCategory='';
+
 
   constructor(private productService:ProductService,private categoryService : CategoryService){}
   ngOnInit(): void {

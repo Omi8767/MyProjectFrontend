@@ -16,7 +16,8 @@ export const routes: Routes = [
             {path:'signUp',loadComponent:()=>import('./components/user/customer/customer.component').then(m=>m.CustomerComponent)},
             {path:'signUpSeller',loadComponent:()=>import('./components/user/seller/seller.component').then(m=>m.SellerComponent)},
             {path:'login',loadComponent:()=> import('./components/user/login/login.component').then(m=>m.LoginComponent)},
-            {path:'usrProducts',loadComponent:()=>import('./components/user/usrproducts/usrproducts.component').then(m=>m.UsrproductsComponent)}
+            {path:'usrProducts',loadComponent:()=>import('./components/user/usrproducts/usrproducts.component').then(m=>m.UsrproductsComponent)},
+            {path:'product/:id',loadComponent:()=>import('./components/user/product-details/product-details.component').then(m=>m.ProductDetailsComponent)}
 
         ]
     },

@@ -23,6 +23,9 @@
             <label for="pname">Product Name:{{p.name}}</label><br>
              <label for="pname">Price:{{p.price | currency:'INR'}}</label><br>
              <label for="pname">Stock:{{p.stock}}</label><br>
+             <button class="btn btn-primary w-50 mb-4" [routerLink]="['/product', p.id]">
+            View More
+        </button>
 
 
         </div>
