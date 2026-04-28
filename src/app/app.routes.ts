@@ -29,7 +29,8 @@ export const routes: Routes = [
             {path:'home',loadComponent:()=>import('./components/customer/home/home.component').then(m=>m.HomeComponent)},
             {path:'feedback',loadComponent:()=>import('./components/customer/feedback/feedback.component').then(m=>m.FeedbackComponent)},
             {path:'buyproducts',loadComponent:()=>import('./components/customer/products/products.component').then(m=>m.ProductsComponentimplements)},
-            {path:'product/:id',loadComponent:()=>import('./components/customer/product-details/product-details.component').then(m=>m.ProductDetailsComponent)}
+            {path:'product/:id',loadComponent:()=>import('./components/customer/product-details/product-details.component').then(m=>m.ProductDetailsComponent)},
+            {path:'cart',loadComponent:()=>import('./components/customer/cart/cart.component').then(m=>m.CartComponent)},
 
         ]
     },

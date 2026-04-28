@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './products.component.css'
 })
 export class ProductsComponentimplements implements OnInit {
-productlist:IProduct[]=[];
+  productlist:IProduct[]=[];
   categories:ICategory[]=[];
 
 
