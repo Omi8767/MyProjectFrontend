@@ -3,23 +3,33 @@ import { CartService, ICart, ICartDTO } from '../../../services/cart.service';
 import { ICustomer } from '../../../services/customer.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { OrderService } from '../../../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule,FormsModule,CurrencyPipe],
+  imports: [CommonModule, FormsModule, CurrencyPipe],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
 
   cartItem: ICart[] = [];
-  cartItemDTO:ICartDTO={customerId:0,productid:0,quantity:0}
+  cartItemDTO: ICartDTO = { customerId: 0, productid: 0, quantity: 0 }
   total: number = 0;
   isloading = true;
   customer!: ICustomer;
 
-  constructor(private cartService: CartService) { }
+  shipping = {
+    name: '',
+    address: '',
+    city: '',
+    pincode: '',
+    contact: ''
+  }
+
+  constructor(private cartService: CartService, private orderService: OrderService, private router: Router) { }
   ngOnInit(): void {
     const store = localStorage.getItem('customer');
     this.customer = store ? JSON.parse(store) : null;
@@ -56,21 +66,98 @@ export class CartComponent implements OnInit {
     return img;
   }
 
-  updateQuantity(cartItem:ICart,change:number){
-    this.cartItemDTO.customerId!=cartItem.customer.id;
-    this.cartItemDTO.productid!=cartItem.product.id;
-    this.cartItemDTO.quantity=cartItem.quantity+change;
-    const newquantity=cartItem.quantity+change;
+  updateQuantity(cartItem: ICart, change: number) {
 
-    cartItem.quantity=newquantity;
+    const newquantity = cartItem.quantity + change;
 
-    return this.cartService.updateQuantity(cartItem.id!,this.cartItemDTO).subscribe({
-      next:(res)=>{
+    if (newquantity <= 0) {
+      this.removeCart(cartItem);
+      return;
+    }
+
+    cartItem.quantity = newquantity;
+
+    if (!this.customer.id || !cartItem.product.id || !cartItem.id) return;
+    this.cartItemDTO.customerId = this.customer.id;
+    this.cartItemDTO.productid = cartItem.product.id;
+    this.cartItemDTO.quantity = cartItem.quantity;
+
+    this.cartService.updateQuantity(cartItem.id, this.cartItemDTO).subscribe({
+      next: (res) => {
         console.log(res);
-        this.loadCart(this.customer.id!);
+        cartItem.quantity = res.quantity;
+        this.total = this.cartService.getTotal(this.cartItem)
+        // this.loadCart(this.customer.id!);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  removeCart(cartItem: ICart) {
+    if (!cartItem.id) return;
+    return this.cartService.removeCart(cartItem.id).subscribe({
+      next: () => {
+        if (!this.customer.id) return;
+        // this.loadCart(this.customer.id);
+        this.cartItem = this.cartItem.filter(i => i.id !== cartItem.id);
+        this.total = this.cartService.getTotal(this.cartItem);
+
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  clearCart() {
+    if (!this.customer.id) return;
+
+    this.cartService.clearCart(this.customer.id).subscribe({
+      next: () => {
+        this.cartItem = [];
+        this.total = 0;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
+  placeOrder() {
+    const store = localStorage.getItem('customer');
+    this.customer = store ? JSON.parse(store) : null;
+
+    if (!this.customer.id) {
+      this.router.navigate(['/login']);
+    }
+
+    if (!this.shipping.name || !this.shipping.address || !this.shipping.city || !this.shipping.contact || !this.shipping.pincode) {
+      alert("please fill the shipping info");
+      return;
+    }
+
+    this.orderService.placeOrder(
+      this.cartItem,
+      this.shipping,
+      18,
+      5
+    ).subscribe({
+      next: (res) => {
+        localStorage.setItem('lastOrder', JSON.stringify(res));
+        if (!this.customer.id) return;
+        this.cartService.clearCart(this.customer.id).subscribe({
+          next: () => {
+            this.cartItem = []
+            this.loadCart(this.customer.id!);
+            this.total = 0;
+          }
+        });
+        this.router.navigate(['/customer/payment']);
       },
       error:(err)=>{
-        console.log(err);
+        console.error(err);
       }
     })
   }

@@ -8,50 +8,53 @@ import { SellerLayoutComponent } from './layouts/seller-layout/seller-layout.com
 
 export const routes: Routes = [
     {
-        path:'',
-        component:UserLayoutComponent,
-        children:[
-            {path:'',loadComponent:()=>import('./components/user/home/home.component').then(m=>m.HomeComponent)},
-            {path:'enquiry',loadComponent:()=>import('./components/user/enquiry/enquiry.component').then(n=>n.EnquiryComponent)},
-            {path:'signUp',loadComponent:()=>import('./components/user/customer/customer.component').then(m=>m.CustomerComponent)},
-            {path:'signUpSeller',loadComponent:()=>import('./components/user/seller/seller.component').then(m=>m.SellerComponent)},
-            {path:'login',loadComponent:()=> import('./components/user/login/login.component').then(m=>m.LoginComponent)},
-            {path:'usrProducts',loadComponent:()=>import('./components/user/usrproducts/usrproducts.component').then(m=>m.UsrproductsComponent)},
-            {path:'product/:id',loadComponent:()=>import('./components/user/product-details/product-details.component').then(m=>m.ProductDetailsComponent)}
+        path: '',
+        component: UserLayoutComponent,
+        children: [
+            { path: '', loadComponent: () => import('./components/user/home/home.component').then(m => m.HomeComponent) },
+            { path: 'enquiry', loadComponent: () => import('./components/user/enquiry/enquiry.component').then(n => n.EnquiryComponent) },
+            { path: 'signUp', loadComponent: () => import('./components/user/customer/customer.component').then(m => m.CustomerComponent) },
+            { path: 'signUpSeller', loadComponent: () => import('./components/user/seller/seller.component').then(m => m.SellerComponent) },
+            { path: 'login', loadComponent: () => import('./components/user/login/login.component').then(m => m.LoginComponent) },
+            { path: 'usrProducts', loadComponent: () => import('./components/user/usrproducts/usrproducts.component').then(m => m.UsrproductsComponent) },
+            { path: 'product/:id', loadComponent: () => import('./components/user/product-details/product-details.component').then(m => m.ProductDetailsComponent) }
 
         ]
     },
     {
-        path:'customer',
-        component:CustomerLayoutComponent,
-        canActivate:[customerAuthGuard],
-        children:[
-            {path:'home',loadComponent:()=>import('./components/customer/home/home.component').then(m=>m.HomeComponent)},
-            {path:'feedback',loadComponent:()=>import('./components/customer/feedback/feedback.component').then(m=>m.FeedbackComponent)},
-            {path:'buyproducts',loadComponent:()=>import('./components/customer/products/products.component').then(m=>m.ProductsComponentimplements)},
-            {path:'product/:id',loadComponent:()=>import('./components/customer/product-details/product-details.component').then(m=>m.ProductDetailsComponent)},
-            {path:'cart',loadComponent:()=>import('./components/customer/cart/cart.component').then(m=>m.CartComponent)},
-
+        path: 'customer',
+        component: CustomerLayoutComponent,
+        canActivate: [customerAuthGuard],
+        children: [
+            { path: 'home', loadComponent: () => import('./components/customer/home/home.component').then(m => m.HomeComponent) },
+            { path: 'feedback', loadComponent: () => import('./components/customer/feedback/feedback.component').then(m => m.FeedbackComponent) },
+            { path: 'buyproducts', loadComponent: () => import('./components/customer/products/products.component').then(m => m.ProductsComponentimplements) },
+            { path: 'product/:id', loadComponent: () => import('./components/customer/product-details/product-details.component').then(m => m.ProductDetailsComponent) },
+            { path: 'cart', loadComponent: () => import('./components/customer/cart/cart.component').then(m => m.CartComponent) },
+            { path: 'payment', loadComponent: () => import('./components/customer/payment/payment.component').then(m => m.PaymentComponent) },
+            { path: 'payment-success', loadComponent: () => import('./components/customer/payment-success/payment-success.component').then(m => m.PaymentSuccessComponent) },
+            { path: 'payment-failed', loadComponent: () => import('./components/customer/payment-failed/payment-failed.component').then(m => m.PaymentFailedComponent) },
+            { path: 'myOrder',loadComponent:()=>import('./components/customer/my-order/my-order.component').then(m=>m.MyOrderComponent)},
         ]
     },
     {
-        path:'admin/login',
-        component:AdminLoginComponent
+        path: 'admin/login',
+        component: AdminLoginComponent
     },
     {
-        path:'admin',
-        component:AdminLayoutComponent,
-        children:[
-            {path:'category',loadComponent:()=>import('./components/admin/category/category.component').then(m=>m.CategoryComponent)},
-            {path:'dashboard',loadComponent:()=>import('./components/admin/dashboard/dashboard.component').then(m=>m.DashboardComponent)}
+        path: 'admin',
+        component: AdminLayoutComponent,
+        children: [
+            { path: 'category', loadComponent: () => import('./components/admin/category/category.component').then(m => m.CategoryComponent) },
+            { path: 'dashboard', loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) }
         ]
     },
     {
-        path:'seller',
-        component:SellerLayoutComponent,
-        children:[
-            {path:'home',loadComponent:()=>import('./components/Seller/home/home.component').then(m=>m.HomeComponent)},
-            {path:'addproduct',loadComponent:()=>import('./components/Seller/product/product.component').then(m=>m.ProductComponent)}
+        path: 'seller',
+        component: SellerLayoutComponent,
+        children: [
+            { path: 'home', loadComponent: () => import('./components/Seller/home/home.component').then(m => m.HomeComponent) },
+            { path: 'addproduct', loadComponent: () => import('./components/Seller/product/product.component').then(m => m.ProductComponent) }
         ]
     }
 ];

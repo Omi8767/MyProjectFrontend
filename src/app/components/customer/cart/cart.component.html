@@ -25,7 +25,7 @@
                   type="number"
                   class="form-control text-center"
                   [(ngModel)]="item.quantity"
-                  (change)="updateQuantity(item, 0)"
+                  
                   
                 />
                 <button class="btn btn-outline-secondary" (click)="updateQuantity(item,1)" >+</button>
@@ -34,8 +34,8 @@
           </div>
 
           <div class="col-md-4 text-end pe-3">
-            <p class="h5">{{ item.product.price * item.quantity | number | currency:'INR' }}</p>
-            <button class="btn btn-link text-danger p-0" >Remove</button>
+            <p class="h5">{{ item.product.price * item.quantity  | currency:'INR' }}</p>
+            <button class="btn btn-link text-danger p-0" (click)="removeCart(item)" >Remove</button>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
       <div class="card p-3 shadow-sm">
         <h5 class="mb-3">🏠 Shipping Information</h5>
         <form>
-          <!-- <div class="row g-3">
+          <div class="row g-3">
             <div class="col-md-6">
               <label class="form-label">Full Name</label>
               <input type="text" class="form-control" [(ngModel)]="shipping.name" name="name" required />
@@ -65,9 +65,9 @@
             </div>
             <div class="col-md-6">
               <label class="form-label">Pin Code</label>
-              <input type="text" class="form-control" [(ngModel)]="shipping.pinCode" name="pinCode" required />
+              <input type="text" class="form-control" [(ngModel)]="shipping.pincode" name="pincode" required />
             </div>
-          </div> -->
+          </div>
         </form>
       </div>
     </div>
@@ -75,10 +75,10 @@
     <!--  Cart Total + Place Order -->
     <div class="col-12 mt-4">
       <div class="d-flex justify-content-between align-items-center p-3 bg-light rounded shadow-sm">
-        <h5>Total: {{ total | number | currency:'INR' }}</h5>
+        <h5>Total: {{ total  | currency:'INR' }}</h5>
         <div class="d-flex gap-2">
-          <button class="btn btn-danger" >Clear Cart</button>
-          <button class="btn btn-primary" >Place Order</button>
+          <button class="btn btn-danger" (click)="clearCart()" >Clear Cart</button>
+          <button class="btn btn-primary" (click)="placeOrder()">Place Order</button>
         </div>
       </div>
     </div>

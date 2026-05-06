@@ -45,10 +45,14 @@ export class CartService {
 
   updateQuantity(id:number,cartdto:ICartDTO):Observable<ICart>{
     //  if(!cartdto.id) return EMPTY;
-    return this.http.put<ICart>(`${this.apiUrl}/${id}`,{quantity:cartdto.quantity});
+    return this.http.put<ICart>(`${this.apiUrl}/${id}`,cartdto);
   }
 
-  removeItem(id:number):void{
-    return this.http.delete<void>(`${this.apiUrl}/${id}`,)
+  removeCart(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/${id}`)
+  }
+
+  clearCart(customerId:number):Observable<void>{
+    return this.http.delete<void>(`${this.apiUrl}/clear/customer/${customerId}`);
   }
 }
