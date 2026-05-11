@@ -56,4 +56,16 @@ export class OrderService {
   cancleOrder(orderId:number):Observable<any>{
     return this.http.put<any>(`${this.apiUrl}/${orderId}/cancel`,{});
   }
+
+  getAllOrders():Observable<any[]>{
+    return this.http.get<any[]>(`${this.apiUrl}`);
+  }
+
+  updateOrderStatus(id:number,status:string):Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/${id}/status?status=${status}`,{});
+  }
+
+  getDashboard(){
+   return this.http.get<any[]>(`${this.apiUrl}/dashboard`)
+  }
 }

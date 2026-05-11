@@ -46,7 +46,9 @@ export const routes: Routes = [
         component: AdminLayoutComponent,
         children: [
             { path: 'category', loadComponent: () => import('./components/admin/category/category.component').then(m => m.CategoryComponent) },
-            { path: 'dashboard', loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) }
+            { path: 'dashboard', loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+            {path:'orders',loadComponent:()=>import('./components/admin/orders/orders.component').then(m=>m.OrdersComponent)},
+            {path:'report/:type',loadComponent:()=>import('./components/admin/report/report.component').then(m=>m.ReportComponent)}
         ]
     },
     {

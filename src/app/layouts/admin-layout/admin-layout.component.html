@@ -3,13 +3,28 @@
   <aside class="sidebar">
     <div class="logo">🛒 ECOM ADMIN</div>
     <nav>
-      <a >Dashboard</a>
+      <a routerLink="/admin/dashboard" routerLinkActive="active" >Dashboard</a>
       <a >Products</a>
       <a routerLink="/admin/category" routerLinkActive="active" >Categories</a>
       <a >Companies</a>
-      <a >Orders</a>
+      <a routerLink="/admin/orders" routerLinkActive="active">Orders</a>
       <a >Feedback</a>
       <a >Enquiries</a>
+
+       <div class="menu-group" (click)="toggle()">
+          <div class="menu-title">
+              Reports
+              <span class="arrow"></span>
+          </div>
+          <div class="submenu" *ngIf="isReportOpen">
+            <a routerLink="/admin/report/category">Category</a>
+            <a routerLink="/admin/report/products">Product</a>
+            <a routerLink="/admin/report/enquiry">Enquiry</a>
+            <a routerLink="/admin/report/customers">Customer</a>
+            <a routerLink="/admin/report/feedback">Feedback</a>
+            <a routerLink="/admin/report/order">Order</a>
+          </div>
+      </div>
     </nav>
     <button class="logout" (click)="logout()" >Logout</button>
   </aside>

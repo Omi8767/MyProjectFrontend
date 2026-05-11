@@ -8,14 +8,15 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
 export class PaymentComponent {
 
-   paymentForm!: FormGroup;
+  paymentForm!: FormGroup;
   submitting = false;
+  mode = "Card";
   successMessage = '';
   totalAmount = 0;
   netAmount = 0;
@@ -27,8 +28,8 @@ export class PaymentComponent {
     private fb: FormBuilder,
     private cartService: CartService,
     private router: Router,
-    private paymentService:PaymentService
-  ) {}
+    private paymentService: PaymentService
+  ) { }
 
   ngOnInit() {
     // Get last order from localStorage
@@ -48,51 +49,55 @@ export class PaymentComponent {
     });
   }
 
-  updateNetAmount(){
-    const gst = (this.totalAmount * this.gstPercent)/100;
-    const discount= (gst * this.discountPercent)/100;
+  updateNetAmount() {
+    const gst = (this.totalAmount * this.gstPercent) / 100;
+    const discount = (gst * this.discountPercent) / 100;
 
     this.netAmount = this.totalAmount + gst - discount;
   }
 
-  makePayment(){
-    this.submitting=true;
-    if(this.paymentForm.invalid) return;
+  makePayment() {
+    this.submitting = true;
+    if (this.paymentForm.invalid) return;
 
     const method = this.paymentForm.value.paymentMethod;
 
-    if(method ==='COD'){
-      const paymentData:IPaymentDTO={
-         orderId: this.orderId,
-      paymentDate: new Date().toISOString().split('T')[0],
-      paymentMethod: 'COD',
-      gstPercent: this.gstPercent,
-      discountPercent: this.discountPercent,
-      totalAmount: this.totalAmount,
-      netAmount: this.netAmount,
-      transactionRef: 'COD-' + Date.now()
+    if (method === 'COD') {
+      const paymentData: IPaymentDTO = {
+        orderId: this.orderId,
+        paymentDate: new Date().toISOString().split('T')[0],
+        paymentMethod: 'COD',
+        gstPercent: this.gstPercent,
+        discountPercent: this.discountPercent,
+        totalAmount: this.totalAmount,
+        netAmount: this.netAmount,
+        transactionRef: 'COD-' + Date.now()
       }
 
       this.paymentService.makePayment(paymentData).subscribe({
-        next:()=>{
+        next: (res) => {
           this.successMessage = 'Order placed with Cash on delivery';
           localStorage.removeItem('lastOrder');
-          this.submitting=false;
+          localStorage.setItem('paymentData', JSON.stringify(res));
+
+          //  redirect to success page
+          this.router.navigate(['/customer/payment-success']);
+          this.submitting = false;
         },
-        error:(err)=>{
+        error: (err) => {
           console.error(err);
           localStorage.removeItem('lastOrder');
-          this.submitting=false;
+          this.submitting = false;
         }
       });
 
     }
-    else if(method==='Card'){
+    else if (method === 'Card') {
       this.paymentService.createStripeSession(this.orderId).subscribe({
-        next:(res:any)=>{
+        next: (res: any) => {
           window.location.href = res.url;
         },
-        error:(err)=>{
+        error: (err) => {
           console.error(err);
         }
       })
