@@ -1,4 +1,3 @@
-
 <div class="card shadow p-4">
 
     <!-- Header -->
@@ -13,6 +12,29 @@
             <button class="btn btn-success" (click)="downloadExcel()">
                 📊 Export Excel
             </button>
+        </div>
+    </div>
+
+    <!-- Filters -->
+
+    <div class="row mb-3" *ngIf="type === 'order'">
+        <div class="col-md-3">
+            <input type="date" [(ngModel)]="fromDate" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <input type="date" [(ngModel)]="toDate" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <select [(ngModel)]="city" class="form-control">
+                <option value="">All Cities</option>
+                <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100" (click)="loadData()">Search</button>
         </div>
     </div>
 

@@ -16,6 +16,7 @@ export const routes: Routes = [
             { path: 'signUp', loadComponent: () => import('./components/user/customer/customer.component').then(m => m.CustomerComponent) },
             { path: 'signUpSeller', loadComponent: () => import('./components/user/seller/seller.component').then(m => m.SellerComponent) },
             { path: 'login', loadComponent: () => import('./components/user/login/login.component').then(m => m.LoginComponent) },
+            { path: 'forgot-password', loadComponent: () => import('./components/user/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent) },
             { path: 'usrProducts', loadComponent: () => import('./components/user/usrproducts/usrproducts.component').then(m => m.UsrproductsComponent) },
             { path: 'product/:id', loadComponent: () => import('./components/user/product-details/product-details.component').then(m => m.ProductDetailsComponent) }
 
@@ -56,7 +57,8 @@ export const routes: Routes = [
         component: SellerLayoutComponent,
         children: [
             { path: 'home', loadComponent: () => import('./components/Seller/home/home.component').then(m => m.HomeComponent) },
-            { path: 'addproduct', loadComponent: () => import('./components/Seller/product/product.component').then(m => m.ProductComponent) }
+            { path: 'addproduct', loadComponent: () => import('./components/Seller/product/product.component').then(m => m.ProductComponent) },
+            { path: 'sellerdashboard', loadComponent: () => import('./components/Seller/seller-dashboard/seller-dashboard.component').then(m => m.SellerDashboardComponent) }
         ]
     }
 ];

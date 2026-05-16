@@ -5,9 +5,7 @@
       <ul class="list-item list-unstyled">
         <li ><a class="btn btn-success my-1" (click)="loadProducts()">All</a></li>
         <li *ngFor="let c of categories"><a class="btn btn-success my-1" (click)="loadProductByCat(c.id!)">{{c.catname}}</a></li>
-        <!-- <li ><a class="btn btn-success my-1" >{{categories[0].catname}}</a></li>
-        <li ><a class="btn btn-success my-1" >{{categories[1].catname}}</a></li>
-        <li ><a class="btn btn-success my-1" >{{categories[2].catname}}</a></li> -->
+        
       </ul>
     </aside>
   </div>
@@ -26,8 +24,6 @@
              <button class="btn btn-primary w-50 mb-4" [routerLink]="['/customer/product', p.id]">
             View More
         </button>
-
-
         </div>
 
         </div>
@@ -38,7 +34,9 @@
   </div>
 </div>
 
-
+<!-- <li ><a class="btn btn-success my-1" >{{categories[0].catname}}</a></li>
+        <li ><a class="btn btn-success my-1" >{{categories[1].catname}}</a></li>
+        <li ><a class="btn btn-success my-1" >{{categories[2].catname}}</a></li> -->
 
 <!-- 
 <div class="bg-dark text-white text-center py-2 small">

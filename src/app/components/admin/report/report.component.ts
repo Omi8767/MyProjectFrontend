@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { API_BASE_URL } from '../../../services/api.config';
 import Swal from 'sweetalert2';
-import { CommonModule } from '@angular/common';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import jsPDF from 'jspdf';
@@ -16,7 +16,7 @@ import { Xliff } from '@angular/compiler';
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,UpperCasePipe],
   templateUrl: './report.component.html',
   styleUrl: './report.component.css'
 })
@@ -26,6 +26,10 @@ export class ReportComponent implements OnInit {
   data: any[] = [];
   columns: any[] = [];
   loading = false;
+  fromDate = '';
+  toDate = '';
+  cities: string[] = [];
+  city: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
   ngOnInit(): void {
@@ -33,11 +37,20 @@ export class ReportComponent implements OnInit {
       this.type = param.get('type')!;
       this.loadData();
     });
+
+     this.http.get<string[]>(`${API_BASE_URL}/order/cities`).subscribe(
+      res=>{
+        this.cities = res;
+      });
   }
 
   loadData() {
     this.loading = true;
     let url = `${API_BASE_URL}/${this.type}`;
+
+     if(this.type ==='order'){
+      url = `${API_BASE_URL}/${this.type}/filter?from=${this.fromDate}&to=${this.toDate}&city=${this.city}`
+    }
 
     this.http.get<any[]>(url).subscribe({
       next: res => {
@@ -101,8 +114,8 @@ export class ReportComponent implements OnInit {
       }
 
       // shipping object
-      if (value.city && value.pinCode) {
-        return `${value.name}, ${value.city}-${value.pinCode}`;
+      if (value.city && value.pincode) {
+        return `${value.name}, ${value.city}-${value.pincode}`;
       }
 
       return JSON.stringify(value);

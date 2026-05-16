@@ -33,4 +33,17 @@ export class CustomerService {
    login(request:ILogin):Observable<ICustomer>{
     return this.http.post<ICustomer>(`${this.apiUrl}/login`,request)
   }
+
+  sendOtp(email:string){
+    return this.http.post(`${this.apiUrl}/send-otp?email=${email}`,{});
+  }
+
+  verifyOtp(email:string,otp:string){
+     return this.http.post(`${this.apiUrl}/verify-otp?email=${email}&otp=${otp}`,{});
+  }
+
+  resetPassword(email:string,password:string){
+    return this.http.post(`${this.apiUrl}/reset-password?email=${email}&password=${password}`,{});
+  }
+
 }

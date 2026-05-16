@@ -12,6 +12,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class AdminLayoutComponent {
 
   isReportOpen = false;
+  // sidebarOpen: boolean = false;
   constructor(private router: Router) { }
 
   toggle() {
